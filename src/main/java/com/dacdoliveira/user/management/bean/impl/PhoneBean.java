@@ -61,4 +61,14 @@ public class PhoneBean implements IPhoneBean
         return phone;
     }
 
+    @Override
+    public void deleteById(Long id)
+    {
+        Phone phone = phoneRepository.getById(id);
+        if (!Objects.isNull(phone))
+        {
+            phoneRepository.delete(phone);
+        }
+    }
+
 }

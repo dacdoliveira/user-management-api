@@ -25,7 +25,6 @@ import com.dacdoliveira.user.management.model.User;
 @ApplicationPath("/resources")
 public class UserService extends Application
 {
-    // http://localhost:8080/test-api/resources/user-management/list-users
     @Inject
     private IUserBean userBean;
 
@@ -80,7 +79,7 @@ public class UserService extends Application
     @DELETE
     @Path("/delete-by-id")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateUser(@QueryParam("id") long id)
+    public Response deleteById(@QueryParam("id") long id)
     {
         userBean.deleteById(id);
         return Response.ok().build();
@@ -93,5 +92,14 @@ public class UserService extends Application
     public Response savePhone(PhoneDto phone)
     {
         return phoneBean.insert(phone);
+    }
+    
+    @DELETE
+    @Path("/phone-delete-by-id")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response phoneDeleteById(@QueryParam("id") long id)
+    {
+        phoneBean.deleteById(id);
+        return Response.ok().build();
     }
 }
